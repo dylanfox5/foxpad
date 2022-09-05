@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { Play, VolumeDown } from 'react-bootstrap-icons';
+import { Play, VolumeDown, PlayCircle } from 'react-bootstrap-icons';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -17,26 +17,25 @@ function App() {
           <Col sm={12} lg={4}>
             <Row>
               <Container>
-                <Button name="play-pause" className="button play-pause-button" aria-label="Play/pause">
-                  <Play />
+                <Button name="play-pause" className="play-pause-button" aria-label="Play/pause">
+                  <PlayCircle />
                 </Button>
               </Container>
             </Row>
           </Col>
-          <Col sm={12} lg={8}>
+          <Col sm={12} lg={8} className="player-controls">
             <Row>
               <Container>
-                <p class="currently-playing-label">Now playing on Some Radio Station</p>
-                <p class="currently-playing-title">Listen to Some Radio Station</p>
+                <span class="currently-playing-label">Now playing on Some Radio Station</span>
+                <br></br>
+                <span class="currently-playing-title">Listen to Some Radio Station</span>
               </Container>
             </Row>
             <Row>
               <Container>
-                <Button name="mute" className="button mute-button" aria-label="Mute/unmute">
+                <Button name="mute" className="mute-button" aria-label="Mute/unmute">
                   <VolumeDown />
                 </Button>
-              </Container>
-              <Container>
                 <input type="range" name="volume" className="volume" min="0" max="1" step="0.05" value="0.2" aria-label="Volume"></input>
               </Container>
             </Row>
