@@ -27,7 +27,7 @@ body {
   width: 100px;
   height: 100px;
   font-size: 75px;
-  border-radius: 50px !important;
+  border-radius: 100% !important;
 }
 
 .player-controls {
@@ -40,7 +40,7 @@ body {
 
 .mute-button {
   margin-right: 24px;
-  border-radius: 24px !important;
+  border-radius: 100% !important;
 }
 
 .currently-playing-label {
