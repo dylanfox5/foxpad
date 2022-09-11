@@ -23,8 +23,15 @@ function App() {
     }, 6000)
   }, [loading])
 
+  // const setVolume = () => {
+  //   console.log('set');
+  //   const track = trackRef.current;
+  //   track.volume = currentVolume;
+  // }
+
   const togglePlay = () => {
     const track = trackRef.current;
+    track.volume = currentVolume;
 
     if (isPlaying) {
       track.pause();
@@ -74,9 +81,9 @@ function App() {
               <Col sm={12} lg={8} className="player-controls">
                 <Row>
                   <Container>
-                    <span className="currently-playing-label">Now playing on Some Radio Station</span>
+                    <span className="currently-playing-label">Now playing Some Random Tune</span>
                     <br></br>
-                    <span className="currently-playing-title">Listen to Some Radio Station</span>
+                    <span className="currently-playing-title">Listen to Some Random Tune</span>
                   </Container>
                 </Row>
                 <Row>
