@@ -48,7 +48,7 @@ function App() {
 
       if (volumeControl) {
         volumeControl.addEventListener("input", () => {
-          const vol = parseFloat(volumeControl);
+          const vol = volumeControl.value;
           track.volume = currentVolume = vol;
           currentVolume = vol;
         })
@@ -86,7 +86,7 @@ function App() {
                     <Button ref={muteButtonRef} name="mute" className="mute-button" aria-label="Mute/unmute">
                       <VolumeDown />
                     </Button>
-                    <input ref={volumeControlRef} type="range" name="volume" className="volume" min="0" max="1" step="0.05" value="0.2" aria-label="Volume"></input>
+                    <input ref={volumeControlRef} type="range" name="volume" className="volume" min="0" max="1" step="0.05" defaultValue="0.2" aria-label="Volume"></input>
                   </Container>
                 </Row>
               </Col>
