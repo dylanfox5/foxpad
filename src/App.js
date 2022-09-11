@@ -11,50 +11,48 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const trackRef = useRef(null);
-  const playButtonRef = useRef(null);
-  const muteButtonRef = useRef(null);
   const volumeControlRef = useRef(null);
   var isPlaying = false;
+  var isMuted = false;
   var currentVolume = 0.2;
 
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-      const track = trackRef.current;
-      const playButton = playButtonRef.current;
-      const muteButton = muteButtonRef.current;
-      const volumeControl = volumeControlRef.current;
-
-      if (track) track.volume = currentVolume;
-  
-      if (playButton) {
-        playButton.addEventListener("click", () => {
-          if (isPlaying) {
-            track.pause();
-            isPlaying = false;
-          } else {
-            track.play();
-            isPlaying = true;
-          }
-        })
-      }
-
-      if (muteButton) {
-        muteButton.addEventListener("click", () => {
-          console.log("mute");
-        })
-      }
-
-      if (volumeControl) {
-        volumeControl.addEventListener("input", () => {
-          const vol = volumeControl.value;
-          track.volume = currentVolume = vol;
-          currentVolume = vol;
-        })
-      }
     }, 6000)
-  }, [])
+  }, [loading])
+
+  const togglePlay = () => {
+    const track = trackRef.current;
+
+    if (isPlaying) {
+      track.pause();
+    } else {
+      track.play();
+    }
+    isPlaying = !isPlaying;
+  }
+
+  const toggleMute = () => {
+    const track = trackRef.current;
+
+    if (isMuted) {
+      track.volume = currentVolume;
+    } else {
+      track.volume = 0;
+    }
+    isMuted = !isMuted;
+  }
+
+  const handleVolume = () => {
+    const volumeControl = volumeControlRef.current;
+    const track = trackRef.current;
+    const vol = volumeControl.value;
+
+    track.volume = currentVolume = vol;
+    currentVolume = vol;
+  }
 
   return (
     <>
@@ -67,7 +65,7 @@ function App() {
               <Col sm={12} lg={4}>
                 <Row>
                   <Container>
-                    <Button ref={playButtonRef} name="play-pause" className="play-pause-button" aria-label="Play/pause">
+                    <Button name="play-pause" className="play-pause-button" aria-label="Play/pause" onClick={togglePlay}>
                       <PlayCircle />
                     </Button>
                   </Container>
@@ -83,10 +81,10 @@ function App() {
                 </Row>
                 <Row>
                   <Container>
-                    <Button ref={muteButtonRef} name="mute" className="mute-button" aria-label="Mute/unmute">
+                    <Button name="mute" className="mute-button" aria-label="Mute/unmute" onClick={toggleMute}>
                       <VolumeDown />
                     </Button>
-                    <input ref={volumeControlRef} type="range" name="volume" className="volume" min="0" max="1" step="0.05" defaultValue="0.2" aria-label="Volume"></input>
+                    <input ref={volumeControlRef} type="range" name="volume" className="volume" min="0" max="1" step="0.05" defaultValue="0.2" aria-label="Volume" onChange={handleVolume}></input>
                   </Container>
                 </Row>
               </Col>
