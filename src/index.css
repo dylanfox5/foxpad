@@ -51,3 +51,11 @@ body {
 .currently-playing-title {
   font-size: 22px;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: inline;
+}
